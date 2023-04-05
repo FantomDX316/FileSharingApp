@@ -8,9 +8,11 @@ dotenv.config();
 mongoConnect();
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
 app.use("/public",express.static("./public/uploads"))
 
-app.use("/api/upload/",require("./routes/fileShareRoute.js"))
+app.use("/api/",require("./routes/fileShareRoute.js"))
 
 app.listen(process.env.PORT,()=>{
     console.log(`App is listening at ${process.env.server_url}`);
