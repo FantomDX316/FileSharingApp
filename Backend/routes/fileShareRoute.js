@@ -3,10 +3,12 @@ const path = require("path");
 const router = express.Router();
 const multer = require("multer");
 
+const fs = require("fs");
+
 //storage option for multer
 const storage = multer.diskStorage({
     destination:(req,file,cb)=>{
-        cb(null,"../Backend/public/uploads");
+        cb(null,"public/uploads");
     },
     filename:(req,file,cb)=>{
         cb(null,`${Date.now()}-${file.originalname}`);
@@ -27,12 +29,24 @@ router.get("/",(req,res)=>{
 
 router.post("/",(req,res)=>{
     try{
-        upload(req,res,function(err){
+        upload(req,res, async function(err){
             if(err){
                 res.status(500).json({"success":false,"error":"file size should be less than 5mb"});
             }else{
-                console.log(req.file)
-                res.status(200).json({"success":true});
+                // console.log(req.file)
+                
+                const code = parseInt(100000 + Math.random() * 900000);
+                const fileShare = new fileShareModel({
+                    fileName:req.file.filename,
+                    filePath:req.file.path,
+                    fileCode:code
+                });
+                fileShare.save().then((file)=>{
+                    console.log(file);
+
+                }).catch(error=>console.log(error.message));
+
+                res.status(200).json({"success":true,"fileCode":code});
 
             }
         });

@@ -8,6 +8,7 @@ dotenv.config();
 mongoConnect();
 
 app.use(cors());
+app.use("/public",express.static("./public/uploads"))
 
 app.use("/api/upload/",require("./routes/fileShareRoute.js"))
 

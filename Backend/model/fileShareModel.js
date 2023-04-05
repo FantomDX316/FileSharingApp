@@ -9,6 +9,10 @@ const fileShareSchema = new Schema({
     filePath:{
         type:String,
         required:true
+    },
+    fileCode:{
+        type:Number,
+        required:true
     }
 });
 
