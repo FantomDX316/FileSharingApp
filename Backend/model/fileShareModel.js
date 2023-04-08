@@ -13,6 +13,10 @@ const fileShareSchema = new Schema({
     fileCode:{
         type:Number,
         required:true
+    },
+    fileSize:{
+        type:Number,
+        required:true
     }
 });
 
