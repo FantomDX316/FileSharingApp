@@ -11,9 +11,15 @@ const Navbar = () => {
                         <Link to="/"> <img src="logo.png" width="120px" alt="logo" /></Link>
                     </Tilt>
                 </div>
-                <nav>
-                    <Link className="uploadFile" to="/">Upload File</Link>
-                    <Link className="receiveFile" to="/receiveFile">Receive File</Link>
+                <nav className="d-flex align-items-center">
+                    <div className="upl">
+                        <Link className="uploadFile" to="/">Upload File</Link>
+                        <div className="line"></div>
+                    </div>
+                    <div className="rec">
+                        <Link className="receiveFile" to="/receiveFile">Receive File</Link>
+                        <div className="line"></div>
+                    </div>
                 </nav>
             </div>
 
