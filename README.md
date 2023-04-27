@@ -1,2 +1,10 @@
 # FileSharingApp
-Allows sharing of files
+## Steps to follow - 
+
+
+
+
+
+
+
+## Allows Sharing of Files
