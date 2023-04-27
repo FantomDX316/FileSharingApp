@@ -7,14 +7,21 @@ import axios from "axios";
 const Home = ()=>{
 
     const [data,setData] = useState("");
+    const formData = new FormData();
 
     const inputHandler = (e)=>{
         setData(e.target.files[0]);
     }
 
-    const uploadHandler = (e)=>{
+    const uploadHandler = async (e)=>{
         e.preventDefault();
-        axios.post("http://localhost:5000",data);
+        formData.append("file",data);
+        const response = await axios.post("http://localhost:5000",formData,{
+            headers:{
+                "Content-Type":"multipart/form-data"
+            }
+        });
+        console.log(response.data)
     }
     return(
     <>
