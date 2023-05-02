@@ -15,13 +15,17 @@ const Home = ()=>{
 
     const uploadHandler = async (e)=>{
         e.preventDefault();
-        formData.append("file",data);
-        const response = await axios.post("http://localhost:5000",formData,{
+        formData.append("data",data);
+        try {
+        const response = await axios.post("http://localhost:5000/api/fileUpload",formData,{
             headers:{
                 "Content-Type":"multipart/form-data"
             }
         });
-        console.log(response.data)
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
     }
     return(
     <>
@@ -29,7 +33,7 @@ const Home = ()=>{
         <div className="container d-flex justify-content-center">
             <div className="card d-flex justify-content-center align-items-center  ">
                     <h1>Upload File</h1>
-                    <form onSubmit={uploadHandler}>
+                    <form onSubmit={uploadHandler} encType="multipart/form-data">
                         <input type="file" onChange={inputHandler}/>
                         <button type="submit"  className="btn btn-primary">Upload File</button>
                     </form>
