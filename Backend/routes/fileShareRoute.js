@@ -26,7 +26,13 @@ const upload = multer({
 router.post("/fileUpload", upload.single("data"), (req, res) => {
     try {
         console.log(req.file);
-        res.send("success")
+        const data = {
+            expires:false,
+            fileName:req.file.filename,
+            fileSize:req.file.size
+
+        }
+        res.render("download",{data});
 
     } catch (error) { console.log(error) }
 })
