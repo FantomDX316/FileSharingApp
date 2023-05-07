@@ -14,3 +14,5 @@ const FileState = (props)=>{
         </>
     );
 }
+
+export default FileState;

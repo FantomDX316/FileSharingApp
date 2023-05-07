@@ -22,6 +22,7 @@ const Home = ()=>{
                 "Content-Type":"multipart/form-data"
             }
         });
+        setData("");
         console.log(response.data);
     } catch (error) {
         console.error(error);
@@ -35,13 +36,15 @@ const Home = ()=>{
                     <h1>Upload File</h1>
                     <form onSubmit={uploadHandler} encType="multipart/form-data">
                         <input type="file" onChange={inputHandler}/>
-                        <button type="submit"  className="btn btn-primary">Upload File</button>
+                        {/* adding button disabled state - disabled={data===""?true:false} */}
+                        <button  type="submit"  className="btn btn-primary">Upload File</button>
                     </form>
             </div>
         </div>
 
         <ParticlesBg  type="tadpole" bg={true} /> 
-    </>);
+    </>
+    );
 };
 
 export default Home;
