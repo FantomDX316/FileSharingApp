@@ -11,7 +11,7 @@ const fileShareSchema = new Schema({
         required:true
     },
     fileCode:{
-        type:Number,
+        type:String,
         required:true
     },
     fileSize:{
