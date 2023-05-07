@@ -1,0 +1,13 @@
+.receive{
+    width: 100vw;
+    height: 500px;
+    border: 2px solid red;
+
+    .receiveCard{
+        width: 60%;
+        height: 90%;
+        box-shadow: 2px 2px 5px 5px grey;
+        border-radius: 10px;
+        background-color: rgb(222, 216, 216);
+    }
+}

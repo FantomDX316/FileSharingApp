@@ -1,6 +1,4 @@
-
-
-.card{
+.card {
     // border: 2px solid black;
     width: 50vw;
     min-width: 370px;
@@ -8,5 +6,6 @@
     min-height: 20rem;
     margin-top: 20px;
     background-color: lightgray;
-    box-shadow: 3px 3px 8px ;
+    box-shadow: 2px 2px 5px 5px grey;
+    border-radius: 10px;
 }
