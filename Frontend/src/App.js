@@ -4,14 +4,12 @@ import Navbar from "./components/Navbar/Navbar.js";
 import Home from "./components/Home/Home.js";
 import Receive from "./components/Receive/Receive.js";
 import Alert from "./components/Alert/Alert.js";
-import FileState from "./context/FileState"
-import FileContext from "./context/FileContext";
+import FileContext from "./context/FileContext.js";
 
 function App() {
   const {alertState} = useContext(FileContext);
   return (
     <div className="App">
-      <FileState>
         <Router>
           <Navbar />
           {alertState?<Alert/>:<></>}
@@ -20,7 +18,6 @@ function App() {
             <Route exact path="/receiveFile" element={<Receive />} />
           </Routes>
         </Router>
-      </FileState>
     </div>
   );
 }
