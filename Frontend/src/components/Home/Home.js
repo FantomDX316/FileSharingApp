@@ -23,7 +23,11 @@ const Home = ()=>{
             }
         });
         setData("");
-        console.log(response.data);
+        if(response.data.success===true){
+
+        }else{
+
+        }
     } catch (error) {
         console.error(error);
     }
@@ -36,8 +40,8 @@ const Home = ()=>{
                     <h1>Upload File</h1>
                     <form onSubmit={uploadHandler} encType="multipart/form-data">
                         <input type="file" onChange={inputHandler}/>
-                        {/* adding button disabled state - disabled={data===""?true:false} */}
-                        <button  type="submit"  className="btn btn-primary">Upload File</button>
+                        {/* adding button disabled state -  */}
+                        <button  type="submit"  disabled={data===""?true:false} className="btn btn-primary">Upload File</button>
                     </form>
             </div>
         </div>

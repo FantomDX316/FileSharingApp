@@ -44,10 +44,12 @@ router.post("/fileUpload", upload.single("data"), async (req, res) => {
             fileCode:otp,
             fileSize:file.size
         });
+
+        //saving the file data to the database
         const doc = await fileShareDoc.save();
         console.log(doc);
 
-        res.status(200).json({success:true});
+        res.status(200).json({success:true,otp});
 
     }catch(error){
         res.status(500).json({success:false});
