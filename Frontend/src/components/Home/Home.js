@@ -1,10 +1,14 @@
-import React,{ useState } from "react";
+import React,{ useState,useContext } from "react";
 import "./Home.scss";
 import ParticlesBg from 'particles-bg'
 import axios from "axios";
+import FileContext from "../../context/FileContext";
 
 
 const Home = ()=>{
+
+    const context = useContext(FileContext);
+    const {setAlert} = context;
 
     const [data,setData] = useState("");
     const formData = new FormData();
@@ -23,10 +27,11 @@ const Home = ()=>{
             }
         });
         setData("");
-        if(response.data.success===true){
-
+        const data = response.data;
+        if(data.success===true){
+            setAlert("success","File Uploaded Successfully")
         }else{
-
+            setAlert("danger","Server Error: Try Again")
         }
     } catch (error) {
         console.error(error);

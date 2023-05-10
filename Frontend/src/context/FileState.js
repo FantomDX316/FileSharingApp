@@ -17,7 +17,7 @@ const FileState = (props)=>{
     }
     return(
         <>
-            <FileContext.Provider value={{alertContent}}>
+            <FileContext.Provider value={{alertState,alertContent,setAlert}}>
                 {props.children}
             </FileContext.Provider>
         </>

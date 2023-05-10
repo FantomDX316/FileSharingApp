@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="App">
         <Router>
-          <Navbar />
           {alertState?<Alert/>:<></>}
+          <Navbar />
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/receiveFile" element={<Receive />} />
