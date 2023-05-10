@@ -1,8 +1,13 @@
-const Alert = () => {
+import {useContext} from "react";
+import FileContext from "../../context/FileContext";
+
+const Alert = (props) => {
+    const context = useContext();
+    const {alertState} = context;
     return (
         <>
-            <div className="alert alert-primary" role="alert">
-                This is a primary alert—check it out!
+            <div className={`alert alert-${alertState.type}`} role="alert">
+                {alertState.title}
             </div>
         </>
     );
