@@ -24,7 +24,7 @@ const upload = multer({
 })
 
 
-//file route
+//Route 1 :file route
 router.post("/fileUpload", upload.single("data"), async (req, res) => {
     try{
         const file = req.file;
@@ -49,13 +49,48 @@ router.post("/fileUpload", upload.single("data"), async (req, res) => {
         const doc = await fileShareDoc.save();
         console.log(doc);
 
+        //sending the response to the frontend to be able to display the otp
         res.status(200).json({success:true,otp});
+
 
     }catch(error){
         res.status(500).json({success:false});
         console.log(error); 
     }
+});
+
+
+//Route 2 : verifying otp route 
+router.post("/verifyOtp",async(req,res)=>{
+    try{
+        const {otp} = req.body;
+
+        //searching the otp in the database and thus letting the user to download the file
+        const doc = await fileShareModel.findOne({fileCode:otp});
+
+        if(doc){
+            return res.status(200).json({success:true,id:doc._id});
+        }else{
+            return res.status(404).json({success:false});
+        }
+    }catch(error){res.status(500).json({success:false})};
+});
+
+//Route 3 : Download file route
+router.get("/downloadFile/:id",async(req,res)=>{
+    try{
+        const id = req.params.id;
+        const doc = await fileShareModel.findOne({_id:id});
+        console.log("db data ==>",doc)
+        if(doc){
+            const {filePath,fileName} = doc;
+            console.log(filePath);
+            res.status(200).download(doc.filePath,doc.fileName)
+        }
+        res.status(200).json({success:true});
+    }catch(error){res.status(500).json({success:false})};
 })
+
 module.exports = router;
 
 
