@@ -81,11 +81,13 @@ router.get("/downloadFile/:id",async(req,res)=>{
     try{
         const id = req.params.id;
         const doc = await fileShareModel.findOne({_id:id});
-        console.log("db data ==>",doc)
+        // console.log("db data ==>",doc)
         if(doc){
+
             const {filePath,fileName} = doc;
-            console.log(filePath);
-            res.status(200).download(doc.filePath,doc.fileName)
+            // console.log(fileName);
+            // console.log(filePath);
+            res.download(filePath,fileName,(error)=>{console.log(error)});
         }
         res.status(200).json({success:true});
     }catch(error){res.status(500).json({success:false})};

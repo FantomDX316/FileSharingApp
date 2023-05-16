@@ -20,7 +20,7 @@ const Receive = () => {
         setOtp(e.target.value);
     }
 
-    //otpVerify state to check whether the otp was verifies or not and this changing the state accordingly
+    //otpVerify state to check whether the otp was verified or not and this changes the state accordingly
     const [otpVerify, setOtpVerify] = useState(false);
 
     //submit Handler
