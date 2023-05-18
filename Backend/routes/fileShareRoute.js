@@ -28,6 +28,7 @@ const upload = multer({
 router.post("/fileUpload", upload.single("data"), async (req, res) => {
     try{
         const file = req.file;
+        console.log(file);
 
         //Checking whether the file is being uploaded from the frontend
         if(file === undefined){
@@ -39,7 +40,7 @@ router.post("/fileUpload", upload.single("data"), async (req, res) => {
 
         //creating a document for fileShareModel
         const fileShareDoc = new fileShareModel({
-            fileName:file.filename,
+            fileName:file.originalname,
             filePath:file.path,
             fileCode:otp,
             fileSize:file.size
@@ -85,11 +86,13 @@ router.get("/downloadFile/:id",async(req,res)=>{
         if(doc){
 
             const {filePath,fileName} = doc;
-            // console.log(fileName);
-            // console.log(filePath);
-            res.download(filePath,fileName,(error)=>{console.log(error)});
+            console.log(fileName);
+            console.log(__dirname);
+            res.download(path.join(__dirname,`../${filePath}`),fileName,(error)=>{console.log("error:::",error)});
+        }else{
+
+            res.status(404).json({success:false});
         }
-        res.status(200).json({success:true});
     }catch(error){res.status(500).json({success:false})};
 })
 

@@ -56,7 +56,7 @@ const Receive = () => {
     //downloadHandler to allow user to download the file
     const downloadHandler = async(e)=>{
         e.preventDefault();
-        await axios.get(`http://localhost:5000/api/downloadFile/${id}`);
+        await axios.get(`http://localhost:5000/api/downloadFile/${id}`,{ responseType: 'blob' });
     }
 
     //id of the file to download storing in the form of state
