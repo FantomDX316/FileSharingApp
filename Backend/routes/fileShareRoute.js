@@ -82,9 +82,10 @@ router.post("/verifyOtp",async(req,res)=>{
 
         if(doc){
             return res.status(200).json({success:true,id:doc._id});
-        }else{
-            return res.status(404).json({success:false});
         }
+
+        return res.status(400).json({success:false});
+        
     }catch(error){res.status(500).json({success:false})};
 });
 

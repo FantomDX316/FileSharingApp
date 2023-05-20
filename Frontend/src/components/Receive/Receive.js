@@ -32,26 +32,28 @@ const Receive = () => {
         const OTP = { otp };
 
         //requesting the server to verify the otp
-        const response = await axios.post("http://localhost:5000/api/verifyOtp", OTP, { headers: { "Content-Type": "application/json" } });
-
-
-
-        //Extracting the response from the server
-        const data = response.data;
-        if (data.success) {
-            setAlert("success", "OTP verified Successfully");
-            setId(data.id);
-            setOtpVerify(true);
-            setTimeout(() => {
+        try {
+            const response = await axios.post("http://localhost:5000/api/verifyOtp", OTP, { headers: { "Content-Type": "application/json" } });
+            const data = response.data;
+            // console.log(data);
+          
+            if (data.success) {
+              setAlert("success", "OTP verified Successfully");
+              setId(data.id);
+              setOtpVerify(true);
+              setTimeout(() => {
                 setOtpVerify(false);
-            }, 1000 * 20);
-
-        } else {
-            setAlert("danger", "Invalid OTP entered");
-            navigate("/")
-
-        }
-        setOtp("");
+              }, 1000 * 20);
+            } 
+              
+          } catch (error) {
+            const data = error.response.data;
+            if (!data.success) {
+                setAlert("danger", "Invalid OTP entered");
+                navigate("/");
+              
+            }
+          }
     }
 
     //downloadHandler to allow user to download the file
@@ -63,7 +65,7 @@ const Receive = () => {
             console.log(data);
             const fileName = Date.now();
             //Handling the file download using the file-saver library saveAs method
-            saveAs(data,fileName);
+            saveAs(data, fileName);
 
             // ------------------------------------------------------------------------------------------------------------------------
 
