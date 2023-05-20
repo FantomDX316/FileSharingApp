@@ -20,6 +20,8 @@ const Home = () => {
     //otp from backend
     const [otp, setOtp] = useState("");
 
+
+    //input handler
     const inputHandler = (e) => {
         setData(e.target.files[0]);
     }
@@ -46,7 +48,7 @@ const Home = () => {
                 setTimeout(() => {
                     setUploadSuccess(false);
                     setOtp("");
-                }, 15000)
+                }, 1000*60)
             } else {
                 setAlert("danger", "Server Error: Try Again");
             }
