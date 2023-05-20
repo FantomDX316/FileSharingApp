@@ -65,7 +65,10 @@ const Receive = () => {
             console.log(data);
             const fileName = Date.now();
             //Handling the file download using the file-saver library saveAs method
-            saveAs(data, fileName);
+
+                saveAs(data, fileName);
+                setOtpVerify(false);
+                navigate("/");
 
             // ------------------------------------------------------------------------------------------------------------------------
 
