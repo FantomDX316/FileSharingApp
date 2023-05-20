@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const otpGenerator = require("otp-generator");
-const fileShareModel = require("../model/fileShareModel")
+const fileShareModel = require("../model/fileShareModel");
+const path = require("path");
 
 //storage option for multer
 const storage = multer.diskStorage({
@@ -86,14 +87,14 @@ router.get("/downloadFile/:id",async(req,res)=>{
         if(doc){
 
             const {filePath,fileName} = doc;
-            console.log(fileName);
-            console.log(__dirname);
-            res.download(path.join(__dirname,`../${filePath}`),fileName,(error)=>{console.log("error:::",error)});
+            // console.log(fileName);
+            // console.log(path.join(__dirname,`../${filePath}`));
+            res.download(path.join(__dirname,`../${filePath}`),fileName,(error)=>{if(error){console.log("error:::",error)}else{console.log("file Downloaded successfulyl")}});
         }else{
 
             res.status(404).json({success:false});
         }
-    }catch(error){res.status(500).json({success:false})};
+    }catch(error){res.status(500).json({success:false});console.log(error)};
 })
 
 module.exports = router;

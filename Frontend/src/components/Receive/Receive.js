@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import FileContext from "../../context/FileContext";
+import { saveAs } from "file-saver";
 import "./Receive.scss";
 
 const Receive = () => {
@@ -54,13 +55,45 @@ const Receive = () => {
     }
 
     //downloadHandler to allow user to download the file
-    const downloadHandler = async(e)=>{
+    const downloadHandler = async (e) => {
         e.preventDefault();
-        await axios.get(`http://localhost:5000/api/downloadFile/${id}`,{ responseType: 'blob' });
+        try {
+            const file = await axios.get(`http://localhost:5000/api/downloadFile/${id}`, { responseType: 'blob' });
+            const { data } = file;
+            console.log(data);
+            const fileName = Date.now();
+            //Handling the file download using the file-saver library saveAs method
+            saveAs(data,fileName);
+
+            // ------------------------------------------------------------------------------------------------------------------------
+
+            //Below shown method to handle the blob from the backend is by using the dom Manipulation other method is by using file-saver library
+
+            //Creating a temporary url to refrence the data file received from the backend 
+            // const fileURL = window.URL.createObjectURL(data);
+            // console.log(fileURL);
+            // //Creating a temporary link element to get triggered when we receive the file
+            // const link = document.createElement("a");
+            // link.href = fileURL;
+            // link.setAttribute("download", "hello");
+            // document.body.appendChild(link);
+            // link.click();
+            // link.remove();
+
+            // // Clean up the temporary URL
+            // window.URL.revokeObjectURL(fileURL);
+
+            // ------------------------------------------------------------------------------------------------------------------------
+
+
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     //id of the file to download storing in the form of state
-    const [id,setId] = useState("");
+    const [id, setId] = useState("");
 
 
     return (
@@ -68,7 +101,7 @@ const Receive = () => {
             <div className="receive container d-flex justify-content-center align-items-center">
                 <div className="receiveCard d-flex flex-column justify-content-center align-items-center">
                     <h2>Your File is Ready to Download</h2>
-                    <form  className="d-flex flex-column justify-content-center align-items-center">
+                    <form className="d-flex flex-column justify-content-center align-items-center">
                         <button onClick={downloadHandler} style={{ display: "block", margin: "20px" }} type="submit" className="btn btn-primary">Download File</button>
                     </form>
                 </div>
