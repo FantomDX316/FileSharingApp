@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const otpGenerator = require("otp-generator");
 const fileShareModel = require("../model/fileShareModel");
+const fs = require("fs");
 const path = require("path");
 
 //storage option for multer
@@ -29,7 +30,7 @@ const upload = multer({
 router.post("/fileUpload", upload.single("data"), async (req, res) => {
     try{
         const file = req.file;
-        console.log(file);
+        // console.log(file);
 
         //Checking whether the file is being uploaded from the frontend
         if(file === undefined){
@@ -38,6 +39,8 @@ router.post("/fileUpload", upload.single("data"), async (req, res) => {
 
         //generating 6 digit otp to store in database
         const otp = otpGenerator.generate(6);
+
+        
 
         //creating a document for fileShareModel
         const fileShareDoc = new fileShareModel({
@@ -49,7 +52,14 @@ router.post("/fileUpload", upload.single("data"), async (req, res) => {
 
         //saving the file data to the database
         const doc = await fileShareDoc.save();
-        console.log(doc);
+        // console.log(doc);
+
+        //setTimeout to delete the file from backend and the database after 5 mins
+        setTimeout(async()=>{
+            fs.unlink(file.path,(error)=>{if(error){console.log(error)}else{console.log("file has been deleted successfully")}});
+            const deleteDoc = await fileShareModel.findOneAndDelete({fileCode:otp});
+            // console.log("deleted doc",deleteDoc);
+        },1000*60*5);
 
         //sending the response to the frontend to be able to display the otp
         res.status(200).json({success:true,otp});
