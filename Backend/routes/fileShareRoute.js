@@ -97,10 +97,27 @@ router.get("/downloadFile/:id",async(req,res)=>{
         // console.log("db data ==>",doc)
         if(doc){
 
-            const {filePath,fileName} = doc;
-            // console.log(fileName);
+            const {filePath,fileName,fileCode} = doc;
+            // console.log(filePath);
             // console.log(path.join(__dirname,`../${filePath}`));
-            res.download(path.join(__dirname,`../${filePath}`),fileName,(error)=>{if(error){console.log("error:::",error)}else{console.log("file Downloaded successfulyl")}});
+            res.download(path.join(__dirname,`../${filePath}`),fileName,async(error)=>{if(error){
+                console.log("error:::",error)
+            }else{
+                console.log("file Downloaded successfulyl")
+                //deleting file from database once the file is downloaded
+                await fileShareModel.findOneAndDelete({fileCode});
+
+                //deleting file from backend once the file is downloaded
+                fs.unlink(filePath,(error)=>{
+                    if(error){
+                        console.log(error)
+                    }else{
+                        console.log("file deleted successfully");
+                    }
+                });
+            }});
+
+
         }else{
 
             res.status(404).json({success:false});
