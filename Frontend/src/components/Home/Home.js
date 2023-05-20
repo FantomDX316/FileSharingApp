@@ -6,6 +6,7 @@ import FileContext from "../../context/FileContext";
 
 
 const Home = () => {
+    
 
     const context = useContext(FileContext);
     const { setAlert } = context;
@@ -48,7 +49,7 @@ const Home = () => {
                 setTimeout(() => {
                     setUploadSuccess(false);
                     setOtp("");
-                }, 1000*60)
+                }, 1000 * 60)
             } else {
                 setAlert("danger", "Server Error: Try Again");
             }
@@ -59,25 +60,30 @@ const Home = () => {
     return (
         <>
 
-            <div className="container d-flex justify-content-center">
-                <div className="card d-flex justify-content-center align-items-center  ">
-                    {uploadSuccess ?
-                        <>
-                            <h1>Use Below OTP to Download the File</h1>
-                            <p style={{fontWeight:"bolder",fontSize:"2rem",color:"blue"}}>{otp}</p>
-                            <p style={{fontSize:"1.1rem"}}>OTP is valid for about 5 mins....</p>
-                        </>
-                        :
-                        <>
-                            <h1>Upload File</h1>
-                            <form onSubmit={uploadHandler} encType="multipart/form-data">
-                                <input type="file" onChange={inputHandler} />
-                                {/* adding button disabled state -  */}
-                                <button type="submit" disabled={data === "" ? true : false} className="btn btn-primary">Upload File</button>
-                            </form>
-                        </>
-                    }
+            <div className="container">
+                <div className="d-flex justify-content-center align-items-center  ">
+                    <div className="card d-flex justify-content-center align-items-center">
+                        {uploadSuccess ?
+                            <>
+                                <h1>Use Below OTP to Download the File</h1>
+                                <p style={{ fontWeight: "bolder", fontSize: "2rem", color: "blue" }}>{otp}</p>
+                                <p style={{ fontSize: "1.1rem" }}>OTP is valid for about 5 mins....</p>
+                            </>
+                            :
+                            <>
+                                <h1 className="col-md-12 text-center">Upload File</h1>
+                                <form onSubmit={uploadHandler} encType="multipart/form-data">
+                                    <input type="file" onChange={inputHandler} className="col-md-12 text-center m-3" />
+                                    {/* adding button disabled state -  */}
+                                    <div className="button col-md-12 text-center m-2">
+                                        <button className={`${data===""?"":"active"}`} type="submit" disabled={data === "" ? true : false}>Upload File</button>
+                                    </div>
+                                </form>
+                            </>
+                        }
+                    </div>
                 </div>
+
             </div>
 
             <ParticlesBg type="tadpole" bg={true} />
