@@ -61,7 +61,7 @@ const Home = () => {
         <>
 
             <div className="container">
-                <div className="d-flex justify-content-center align-items-center  ">
+                <div className="card_holder d-flex justify-content-center align-items-center  ">
                     <div className="card d-flex justify-content-center align-items-center">
                         {uploadSuccess ?
                             <>
@@ -71,7 +71,7 @@ const Home = () => {
                             </>
                             :
                             <>
-                                <h1 className="col-md-12 text-center">Upload File</h1>
+                                <h1 className="col-md-12 text-center" style={{fontWeight:"bolder",color:"blueviolet"}}>Upload File</h1>
                                 <form onSubmit={uploadHandler} encType="multipart/form-data">
                                     <input type="file" onChange={inputHandler} className="col-md-12 text-center m-3" />
                                     {/* adding button disabled state -  */}
