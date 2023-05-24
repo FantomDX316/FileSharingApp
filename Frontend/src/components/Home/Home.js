@@ -60,9 +60,9 @@ const Home = () => {
     return (
         <>
 
-            <div className="container">
-                <div className="card_holder d-flex justify-content-center align-items-center  ">
-                    <div className="card d-flex justify-content-center align-items-center">
+            <div className="container col-md-12 " style={{height:"60vh"}}>
+                <div className="card_holder d-flex justify-content-center align-items-center col-md-12 " style={{height:"100%"}}>
+                    <div className="card d-flex justify-content-center align-items-center col-md-6 col-sm-4">
                         {uploadSuccess ?
                             <>
                                 <h1>Use Below OTP to Download the File</h1>
