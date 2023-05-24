@@ -6,7 +6,7 @@ import FileContext from "../../context/FileContext";
 
 
 const Home = () => {
-    
+
 
     const context = useContext(FileContext);
     const { setAlert } = context;
@@ -59,34 +59,39 @@ const Home = () => {
     }
     return (
         <>
+            <div className="container mt-3">
+                <div className="row">
+                    <div className="card_holder col-md-12 col-sm-12 col-12 d-flex justify-content-center align-items-center ">
+                        <div className="card col-md-6 col-sm-10 col-10 m-5 d-flex align-items-center justify-content-center">
+                            {uploadSuccess ?
+                                <>
+                                    <h1>Use Below OTP to Download the File</h1>
+                                    <p style={{ fontWeight: "bolder", fontSize: "2rem", color: "blue" }}>{otp}</p>
+                                    <p style={{ fontSize: "1.1rem" }}>OTP is valid for about 5 mins....</p>
+                                </>
+                                :
+                                <>
+                                    <h1 className="col-md-12 text-center" style={{ fontWeight: "bolder", color: "blueviolet" }}>Upload File</h1>
+                                    <form onSubmit={uploadHandler} encType="multipart/form-data" className="col-md-10">
+                                        <div className="col-md-12">
+                                            <input type="file" onChange={inputHandler} className="col-md-12 text-center m-3" />
+                                        </div>
+                                        {/* adding button disabled state -  */}
+                                        <div className="button col-md-12 text-center m-2">
+                                            <button className={`${data === "" ? "" : "active"}`} type="submit" disabled={data === "" ? true : false}>Upload File</button>
+                                        </div>
+                                    </form>
+                                </>
+                            }
 
-            <div className="container col-md-12 " style={{height:"60vh"}}>
-                <div className="card_holder d-flex justify-content-center align-items-center col-md-12 " style={{height:"100%"}}>
-                    <div className="card d-flex justify-content-center align-items-center col-md-6 col-sm-4">
-                        {uploadSuccess ?
-                            <>
-                                <h1>Use Below OTP to Download the File</h1>
-                                <p style={{ fontWeight: "bolder", fontSize: "2rem", color: "blue" }}>{otp}</p>
-                                <p style={{ fontSize: "1.1rem" }}>OTP is valid for about 5 mins....</p>
-                            </>
-                            :
-                            <>
-                                <h1 className="col-md-12 text-center" style={{fontWeight:"bolder",color:"blueviolet"}}>Upload File</h1>
-                                <form onSubmit={uploadHandler} encType="multipart/form-data">
-                                    <input type="file" onChange={inputHandler} className="col-md-12 text-center m-3" />
-                                    {/* adding button disabled state -  */}
-                                    <div className="button col-md-12 text-center m-2">
-                                        <button className={`${data===""?"":"active"}`} type="submit" disabled={data === "" ? true : false}>Upload File</button>
-                                    </div>
-                                </form>
-                            </>
-                        }
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
 
-            <ParticlesBg type="tadpole" bg={true} />
+
+            <ParticlesBg type="ball" bg={true} />
         </>
     );
 };
