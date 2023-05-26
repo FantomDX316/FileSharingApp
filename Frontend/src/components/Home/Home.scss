@@ -24,24 +24,24 @@
         .button {
             
             button {
-                background-color: lighten(blueViolet, 20%);
-                border-radius: 20px;
-                color: white;
-                width: 150px;
-                height: 40px;
-                font-weight: bolder;
-                box-shadow: 2px 2px 5px 5px grey;
+                // background-color: lighten(blueViolet, 20%);
+                // border-radius: 20px;
+                // color: white;
+                // width: 150px;
+                // height: 40px;
+                // font-weight: bolder;
+                // box-shadow: 2px 2px 5px 5px grey;
 
-                &:hover {
-                    cursor: not-allowed;
-                }
+                // &:hover {
+                //     cursor: not-allowed;
+                // }
 
             }
 
             .active {
-                background-color: blueviolet;
-                cursor: pointer;
-                box-shadow: 2px 2px 5px 5px grey;
+                // background-color: blueviolet;
+                // cursor: pointer;
+                // box-shadow: 2px 2px 5px 5px grey;
 
                 // &:hover {
                 //     background-color: darken(blueviolet, 10%);
