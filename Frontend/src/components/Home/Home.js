@@ -73,16 +73,16 @@ const Home = () => {
                                 :
                                 <>
                                     <h1 className="col-md-12 text-center" style={{ fontWeight: "bolder", color: "blueviolet" }}>Upload File</h1>
-                                    {/* <form encType="multipart/form-data" className="col-md-10"> */}
-                                        {/* <div className="inputHolder col-md-12 text-center"> */}
+                                    <form encType="multipart/form-data" className="col-md-10">
+                                        <div className="inputHolder col-md-12 text-center">
                                             <input type="file" onChange={inputHandler} className="text-center m-3" style={{width:"88px"}} />
                                             <h6>{data.name}</h6>
-                                        {/* </div> */}
+                                        </div>
                                         {/* adding button disabled state -  */}
-                                        {/* <div className="button col-md-12 text-center m-2" > */}
-                                            <button onClick={uploadHandler} className={`${data === "" ? "" : "active"}`}  disabled={data === "" ? true : false}>Upload File</button>
-                                        {/* </div> */}
-                                    {/* </form> */}
+                                        <div className="button col-md-12 text-center m-2" onClick={uploadHandler}>
+                                            <button className={`${data === "" ? "" : "active"}`}  disabled={data === "" ? true : false}>Upload File</button>
+                                        </div>
+                                    </form>
                                 </>
                             }
 
