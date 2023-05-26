@@ -8,7 +8,8 @@ import FileContext from "./context/FileContext.js";
 import "./App.scss";
 
 function App() {
-  const {alertState} = useContext(FileContext);
+  const context = useContext(FileContext);
+  const {alertState} = context;
   return (
     <div className="App">
         <Router>
