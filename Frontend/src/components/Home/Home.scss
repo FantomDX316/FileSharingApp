@@ -4,16 +4,16 @@
     // min-width: 370px;
     min-height: 20rem;
     background-color: rgb(242, 238, 238);
-    box-shadow: 2px 2px 5px 3px rgb(0, 0, 0);
+    box-shadow: 2px 2px 5px 3px rgb(197, 196, 196);
     border-radius: 10px;
     background-image: url("../../../public/bg.png");
     background-position: center;
     background-size: cover;
-    
+
 
     form {
         .button {
-            
+
             button {
                 background-color: lighten(blueViolet, 20%);
                 border-radius: 20px;
@@ -22,9 +22,10 @@
                 height: 40px;
                 font-weight: bolder;
                 box-shadow: 2px 2px 5px 5px grey;
-                 &:hover{
+
+                &:hover {
                     cursor: not-allowed;
-                 }
+                }
 
             }
 
@@ -33,9 +34,9 @@
                 cursor: pointer;
                 box-shadow: 2px 2px 5px 5px grey;
 
-                &:hover{
+                &:hover {
                     background-color: darken(blueviolet, 10%);
-                    transform: translate(0,2px);
+                    transform: translate(0, 2px);
                     box-shadow: 2px 2px 3px 3px grey;
                     color: yellow;
                     cursor: pointer;

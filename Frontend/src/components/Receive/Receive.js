@@ -36,24 +36,24 @@ const Receive = () => {
             const response = await axios.post("http://localhost:5000/api/verifyOtp", OTP, { headers: { "Content-Type": "application/json" } });
             const data = response.data;
             // console.log(data);
-          
+
             if (data.success) {
-              setAlert("success", "OTP verified Successfully");
-              setId(data.id);
-              setOtpVerify(true);
-              setTimeout(() => {
-                setOtpVerify(false);
-              }, 1000 * 20);
-            } 
-              
-          } catch (error) {
+                setAlert("success", "OTP verified Successfully");
+                setId(data.id);
+                setOtpVerify(true);
+                setTimeout(() => {
+                    setOtpVerify(false);
+                }, 1000 * 20);
+            }
+
+        } catch (error) {
             const data = error.response.data;
             if (!data.success) {
                 setAlert("danger", "Invalid OTP entered");
                 navigate("/");
-              
+
             }
-          }
+        }
     }
 
     //downloadHandler to allow user to download the file
@@ -66,9 +66,9 @@ const Receive = () => {
             const fileName = Date.now();
             //Handling the file download using the file-saver library saveAs method
 
-                saveAs(data, fileName);
-                setOtpVerify(false);
-                navigate("/");
+            saveAs(data, fileName);
+            setOtpVerify(false);
+            navigate("/");
 
             // ------------------------------------------------------------------------------------------------------------------------
 
@@ -102,28 +102,36 @@ const Receive = () => {
 
 
     return (
-        <>{otpVerify ?
-            <div className="receive container d-flex justify-content-center align-items-center">
-                <div className="receiveCard d-flex flex-column justify-content-center align-items-center">
-                    <h2>Your File is Ready to Download</h2>
-                    <form className="d-flex flex-column justify-content-center align-items-center">
-                        <button onClick={downloadHandler} style={{ display: "block", margin: "20px" }} type="submit" className="btn btn-primary">Download File</button>
-                    </form>
-                </div>
-            </div>
-            :
-            <div className="receive container d-flex justify-content-center align-items-center">
-                <div className="receiveCard d-flex flex-column justify-content-center align-items-center">
-                    <h2>Enter OTP to download file</h2>
-                    <form action="" className="d-flex flex-column justify-content-center align-items-center">
-                        <input type="text" onChange={inputHandler} />
-                        <button onClick={submitHandler} style={{ display: "block", margin: "20px" }} type="submit" className="btn btn-primary">Submit</button>
-                    </form>
+        <>
+            <div className="container mt-3">
+                <div className="row">
+                    <div className="receive col-md-12 col-sm-12 col-12 d-flex justify-content-center align-items-center">
+                        <div className="receiveCard col-md-6 col-sm-10 col-10 m-5 d-flex align-items-center justify-content-center flex-column">
+                            {otpVerify ?
+                                <>
+                                    <h2>Your File is Ready to Download</h2>
+                                    <form className="">
+                                        <button onClick={downloadHandler} style={{ display: "block", margin: "20px" }} type="submit" className="btn btn-primary">Download File</button>
+                                    </form>
+                                </>
+                                :
+                                <>
+                                    <h2 className="col-md-12 text-center" style={{ fontWeight: "bolder", color: "blueviolet" }}>Enter OTP to download file</h2>
+                                    <form action="" className="col-md-10">
+                                        <div className="col-md-12 text-center">
+                                            <input type="text" onChange={inputHandler} className="otpInput col-md-5 text-center m-3" />
+                                        </div>
+                                        <div className="button col-md-12 text-center m-2">
+                                            <button onClick={submitHandler} className={`${otp === "" ? "" : "active"}`} type="submit" disabled={otp === "" ? true : false}>Submit</button>
+                                        </div>
+                                    </form>
+                                </>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
 
-
-        }
         </>
     );
 };
