@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar.js";
 import Home from "./components/Home/Home.js";
 import Receive from "./components/Receive/Receive.js";
 import Alert from "./components/Alert/Alert.js";
-import FileContext from "./context/FileContext";
+import FileContext from "./context/FileContext.js";
 import "./App.scss";
 
 function App() {
