@@ -28,6 +28,13 @@ const Home = () => {
         console.log(e.target.files)
     }
 
+    const [count,setCount] = useState(1);
+
+    //count Handler
+    const countHandler=()=>{
+        setCount(count+1);
+    }
+
     const uploadHandler = async (e) => {
         e.preventDefault();
         formData.append("data", data);
@@ -82,6 +89,8 @@ const Home = () => {
                                         <div className="button col-md-12 text-center m-2">
                                             <button className={`${data === "" ? "" : "active"}`} type="submit" disabled={data === "" ? true : false}>Upload File</button>
                                         </div>
+                                        <button className="btn btn-primary" onClick={countHandler}>count</button>
+                                        <div>{count}</div>
                                     </form>
                                 </>
                             }
