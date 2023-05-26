@@ -25,6 +25,7 @@ const Home = () => {
     //input handler
     const inputHandler = (e) => {
         setData(e.target.files[0]);
+        console.log(e.target.files)
     }
 
     const uploadHandler = async (e) => {
@@ -65,16 +66,17 @@ const Home = () => {
                         <div className="card col-md-6 col-sm-10 col-10 m-5 d-flex align-items-center justify-content-center">
                             {uploadSuccess ?
                                 <>
-                                    <h1>Use Below OTP to Download the File</h1>
-                                    <p style={{ fontWeight: "bolder", fontSize: "2rem", color: "blue" }}>{otp}</p>
-                                    <p style={{ fontSize: "1.1rem" }}>OTP is valid for about 5 mins....</p>
+                                    <h3>Use Below OTP to Download the File</h3>
+                                    <p style={{ fontWeight: "bolder", fontSize: "2rem", color: "green" }}>{otp}</p>
+                                    <p style={{ fontSize: "1.1rem",color:"red" }}>OTP is valid for about 5 mins....</p>
                                 </>
                                 :
                                 <>
                                     <h1 className="col-md-12 text-center" style={{ fontWeight: "bolder", color: "blueviolet" }}>Upload File</h1>
                                     <form onSubmit={uploadHandler} encType="multipart/form-data" className="col-md-10">
-                                        <div className="col-md-12">
-                                            <input type="file" onChange={inputHandler} className="col-md-12 text-center m-3" />
+                                        <div className="inputHolder col-md-12 text-center">
+                                            <input type="file" onChange={inputHandler} className=" text-center m-3" style={{width:"75px"}} />
+                                            <h6>{data.name}</h6>
                                         </div>
                                         {/* adding button disabled state -  */}
                                         <div className="button col-md-12 text-center m-2">
@@ -91,7 +93,7 @@ const Home = () => {
             </div>
 
 
-            <ParticlesBg type="ball" bg={true} />
+            <ParticlesBg type="thick" bg={true} />
         </>
     );
 };

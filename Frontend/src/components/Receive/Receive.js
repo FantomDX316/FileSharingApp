@@ -4,6 +4,7 @@ import axios from "axios";
 import FileContext from "../../context/FileContext";
 import { saveAs } from "file-saver";
 import "./Receive.scss";
+import ParticlesBg from "particles-bg";
 
 const Receive = () => {
 
@@ -74,7 +75,7 @@ const Receive = () => {
 
             //Below shown method to handle the blob from the backend is by using the dom Manipulation other method is by using file-saver library
 
-            //Creating a temporary url to refrence the data file received from the backend 
+            //Creating a temporary url to reference the data file received from the backend 
             // const fileURL = window.URL.createObjectURL(data);
             // console.log(fileURL);
             // //Creating a temporary link element to get triggered when we receive the file
@@ -109,9 +110,9 @@ const Receive = () => {
                         <div className="receiveCard col-md-6 col-sm-10 col-10 m-5 d-flex align-items-center justify-content-center flex-column">
                             {otpVerify ?
                                 <>
-                                    <h2>Your File is Ready to Download</h2>
-                                    <form className="">
-                                        <button onClick={downloadHandler} style={{ display: "block", margin: "20px" }} type="submit" className="btn btn-primary">Download File</button>
+                                    <h2 style={{ fontWeight: "bolder", color: "blueviolet"}}>Your File is Ready to Download</h2>
+                                    <form className="downloadForm">
+                                        <button onClick={downloadHandler} type="submit">Download File</button>
                                     </form>
                                 </>
                                 :
@@ -131,6 +132,7 @@ const Receive = () => {
                     </div>
                 </div>
             </div>
+            <ParticlesBg type="thick" bg={true} />
 
         </>
     );

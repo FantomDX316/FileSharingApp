@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import FileContext from "../../context/FileContext";
+import "./Alert.scss"
 
 const Alert = (props) => {
     const context = useContext(FileContext);
@@ -7,7 +8,7 @@ const Alert = (props) => {
     return (
         <>
             <div className="d-flex justify-content-center">
-                <div style={{ backgroundColor: "lightGreen", color: "white", fontWeight: "bolder", width: "50%" }} className={`text-center alert alert-${alertContent.type}`} role="alert">
+                <div  className={`alertElement text-center alert alert-${alertContent.type}`} role="alert">
                     {alertContent.title}
                 </div>
             </div>

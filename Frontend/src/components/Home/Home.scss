@@ -10,10 +10,18 @@
     background-position: center;
     background-size: cover;
 
+    h3{
+        color: blueviolet;
+    }
 
     form {
-        .button {
+        .inputHolder h6{
+            color: red;
+            padding: 20px;
+        }
 
+        .button {
+            
             button {
                 background-color: lighten(blueViolet, 20%);
                 border-radius: 20px;
