@@ -80,9 +80,8 @@ const Home = () => {
                                         </div>
                                         {/* adding button disabled state -  */}
                                         <div className="button col-md-12 text-center m-2">
-                                            <button className={`${data === "" ? "" : "active"}`} type="submit" >Upload File</button>
+                                            <button className={`${data === "" ? "" : "active"}`} type="submit" disabled={data === "" ? true : false}>Upload File</button>
                                         </div>
-                                        {/* disabled={data === "" ? true : false} */}
                                     </form>
                                 </>
                             }
