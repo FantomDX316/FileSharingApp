@@ -75,7 +75,7 @@ const Home = () => {
                                     <h1 className="col-md-12 text-center" style={{ fontWeight: "bolder", color: "blueviolet" }}>Upload File</h1>
                                     <form onSubmit={uploadHandler} encType="multipart/form-data" className="col-md-10">
                                         <div className="inputHolder col-md-12 text-center">
-                                            <input type="file" onChange={inputHandler} className="text-center m-3" style={{width:"100px"}} />
+                                            <input type="file" onChange={inputHandler} className="text-center m-3" style={{width:"90px"}} />
                                             <h6>{data.name}</h6>
                                         </div>
                                         {/* adding button disabled state -  */}
