@@ -34,7 +34,7 @@ const Receive = () => {
 
         //requesting the server to verify the otp
         try {
-            const response = await axios.post("http://localhost:5000/api/verifyOtp", OTP, { headers: { "Content-Type": "application/json" } });
+            const response = await axios.post(`${process.env.REACT_APP_DEV_API_URL}${process.env.REACT_APP_PORT}/api/verifyOtp`, OTP, { headers: { "Content-Type": "application/json" } });
             const data = response.data;
             // console.log(data);
 
@@ -61,7 +61,7 @@ const Receive = () => {
     const downloadHandler = async (e) => {
         e.preventDefault();
         try {
-            const file = await axios.get(`http://localhost:5000/api/downloadFile/${id}`, { responseType: 'blob' });
+            const file = await axios.get(`${process.env.REACT_APP_DEV_API_URL}${process.env.REACT_APP_PORT}/api/downloadFile/${id}`, { responseType: 'blob' });
             const { data } = file;
             console.log(data);
             const fileName = Date.now();

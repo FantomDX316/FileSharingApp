@@ -32,7 +32,7 @@ const Home = () => {
         e.preventDefault();
         formData.append("data", data);
         try {
-            const response = await axios.post("http://localhost:5000/api/fileUpload", formData, {
+            const response = await axios.post(`${process.env.REACT_APP_DEV_API_URL}${process.env.REACT_APP_PORT}/api/fileUpload`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
