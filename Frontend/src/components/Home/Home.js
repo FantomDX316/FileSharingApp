@@ -93,7 +93,7 @@ const Home = () => {
             </div>
 
 
-            <ParticlesBg type="thick" bg={true} />
+            <ParticlesBg type="ball" bg={true} />
         </>
     );
 };

@@ -7,18 +7,38 @@
 }
 
 nav {
-        .upl,.rec{
-            font-weight: bolder;
-            font-size: 1.8rem;
-            padding: 0 0 0 5%;
 
-            a{
-                text-decoration: none;
-                color: blueviolet;
-            }
+    .upl,
+    .rec {
+        font-weight: bolder;
+        font-size: 1.8rem;
+        padding: 0 0 0 5%;
+        position: relative;
+        transition: 0.1s ease-in-out;
+        text-align: center;
+
+        a {
+            text-decoration: none;
+            color: blueviolet;
         }
-        
-        
+
+
+        &:hover{
+            border-right: 5px solid yellow;
+            border-bottom: 5px solid yellow;
+            border-radius: 50px;
+        }
+
+    }
+
+    .active{
+        border-right: 5px solid red;
+        border-bottom: 5px solid red;
+        border-radius: 50px;
+    }
+
+
+
 }
 
 //     a{
