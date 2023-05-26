@@ -16,6 +16,7 @@ const Receive = () => {
 
     //creating otp state to handle the otp received as input
     const [otp, setOtp] = useState("");
+    
 
     //inputHandler
     const inputHandler = (e) => {
