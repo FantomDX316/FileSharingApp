@@ -32,11 +32,19 @@ const Home = () => {
         e.preventDefault();
         formData.append("data", data);
         try {
-            const response = await axios.post(`${process.env.REACT_APP_DEV_API_URL}${process.env.REACT_APP_PORT}/api/fileUpload`, formData, {
+            // const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_DEV_URL}${process.env.REACT_APP_PORT}/api/fileUpload`, formData, {
+            //     headers: {
+            //         "Content-Type": "multipart/form-data"
+            //     }
+            // });
+
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_BASE_URL}/api/fileUpload`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
             });
+
+
             setData("");
 
             //handling the json response from backend server

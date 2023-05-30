@@ -35,7 +35,11 @@ const Receive = () => {
 
         //requesting the server to verify the otp
         try {
-            const response = await axios.post(`${process.env.REACT_APP_DEV_API_URL}${process.env.REACT_APP_PORT}/api/verifyOtp`, OTP, { headers: { "Content-Type": "application/json" } });
+            // const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_DEV_URL}${process.env.REACT_APP_PORT}/api/verifyOtp`, OTP, { headers: { "Content-Type": "application/json" } });
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_BASE_URL}/api/verifyOtp`, OTP, { headers: { "Content-Type": "application/json" } });
+
+
+
             const data = response.data;
             // console.log(data);
 
@@ -62,7 +66,8 @@ const Receive = () => {
     const downloadHandler = async (e) => {
         e.preventDefault();
         try {
-            const file = await axios.get(`${process.env.REACT_APP_DEV_API_URL}${process.env.REACT_APP_PORT}/api/downloadFile/${id}`, { responseType: 'blob' });
+            // const file = await axios.get(`${process.env.REACT_APP_BACKEND_API_DEV_URL}${process.env.REACT_APP_PORT}/api/downloadFile/${id}`, { responseType: 'blob' });
+            const file = await axios.get(`${process.env.REACT_APP_BACKEND_API_BASE_URL}/api/downloadFile/${id}`, { responseType: 'blob' });
             const { data } = file;
             console.log(data);
             const fileName = Date.now();
@@ -124,7 +129,7 @@ const Receive = () => {
                                             <input type="text" onChange={inputHandler} className="otpInput col-md-5 text-center m-3" />
                                         </div>
                                         <div className="button col-md-12 text-center m-2">
-                                            <button onClick={submitHandler} className={`${otp === "" ? "" : "active"}`} type="submit" disabled={otp === "" ? true : false}>Submit</button>
+                                            <button onClick={submitHandler} onTouchStart className={`${otp === "" ? "" : "active"}`} type="submit" disabled={otp === "" ? true : false}>Submit</button>
                                         </div>
                                     </form>
                                 </>
