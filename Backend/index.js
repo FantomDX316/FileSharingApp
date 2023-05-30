@@ -19,5 +19,5 @@ app.use("/public",express.static(__dirname+"/public/uploads"))
 app.use("/api",require("./routes/fileShareRoute.js"))
 
 app.listen(process.env.PORT,()=>{
-    console.log(`App is listening at ${process.env.BACKEND_API_DEV_URL}`);
+    console.log(`App is listening at ${process.env.BACKEND_API_URL}`);
 })
