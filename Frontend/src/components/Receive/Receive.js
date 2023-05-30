@@ -129,7 +129,7 @@ const Receive = () => {
                                             <input type="text" onChange={inputHandler} className="otpInput col-md-5 text-center m-3" />
                                         </div>
                                         <div className="button col-md-12 text-center m-2">
-                                            <button onClick={submitHandler} onTouchStart className={`${otp === "" ? "" : "active"}`} type="submit" disabled={otp === "" ? true : false}>Submit</button>
+                                            <button onClick={submitHandler}  className={`${otp === "" ? "" : "active"}`} type="submit" disabled={otp === "" ? true : false}>Submit</button>
                                         </div>
                                     </form>
                                 </>
