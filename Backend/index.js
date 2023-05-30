@@ -18,6 +18,6 @@ app.use(express.urlencoded({extended:false}));
 app.use("/public",express.static(__dirname+"/public/uploads"))
 app.use("/api",require("./routes/fileShareRoute.js"))
 
-app.listen(process.env.PORT,()=>{
+app.listen(process.env.PORT||5000,()=>{
     console.log(`App is listening at ${process.env.BACKEND_API_URL}`);
 })
