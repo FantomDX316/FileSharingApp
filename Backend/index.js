@@ -21,5 +21,5 @@ app.use("/api",require("./routes/fileShareRoute.js"));
 const port = process.env.PORT || 5000 ;
 
 app.listen(port,()=>{
-    console.log(`App is listening at ${process.env.BACKEND_API_URL}`);
+    console.log(`App is listening at ${process.env.BACKEND_API_BASE_URL}`);
 })
