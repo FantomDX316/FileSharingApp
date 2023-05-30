@@ -1,6 +1,6 @@
 # FileSharingApp
 
-# App is live at https://filesharingapp316.netlify.app/
+## App is live at https://filesharingapp316.netlify.app/
 
 ## Server is a bit slow so upload might take time
 
