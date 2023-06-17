@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import FileContext from "./FileContext.js";
+import FileContext from "./FileContext.jsx";
 
 
 const FileState = (props)=>{

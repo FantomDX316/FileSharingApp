@@ -56,7 +56,8 @@ router.post("/fileUpload", upload.single("data"), async (req, res) => {
 
         //setTimeout to delete the file from backend and the database after 5 mins
         setTimeout(async()=>{
-            fs.unlink(file.path,(error)=>{if(error){console.log(error)}else{console.log("file has been deleted successfully")}});
+            fs.unlink(file.path,(error)=>{if(error){console.log(error)}else{
+                console.log("file has been deleted successfully")}});
             const deleteDoc = await fileShareModel.findOneAndDelete({fileCode:otp});
             // console.log("deleted doc",deleteDoc);
         },1000*60*5);

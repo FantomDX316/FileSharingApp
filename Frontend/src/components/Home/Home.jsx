@@ -3,6 +3,7 @@ import "./Home.scss";
 import ParticlesBg from 'particles-bg'
 import axios from "axios";
 import FileContext from "../../context/FileContext";
+import Loader from "../Loader/Loader";
 
 
 const Home = () => {
@@ -28,16 +29,19 @@ const Home = () => {
         console.log(e.target.files)
     }
 
+    //state to for loader
+    const [loader,setLoader] = useState(false)
+
     const uploadHandler = async (e) => {
-        e.preventDefault();
         formData.append("data", data);
         try {
+            e.preventDefault();
             // const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_DEV_URL}${process.env.REACT_APP_PORT}/api/fileUpload`, formData, {
             //     headers: {
             //         "Content-Type": "multipart/form-data"
             //     }
             // });
-
+            setLoader(true);
             const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_BASE_URL}/api/fileUpload`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
@@ -52,6 +56,7 @@ const Home = () => {
 
             //checking the response from the server
             if (data.success === true) {
+                setLoader(false)
                 setAlert("success", "File Uploaded Successfully");
                 setUploadSuccess(true);
                 setOtp(data.otp);
@@ -60,13 +65,14 @@ const Home = () => {
                     setOtp("");
                 }, 1000 * 60)
             } else {
+                setLoader(false);
                 setAlert("danger", "Server Error: Try Again");
             }
         } catch (error) {
             console.error(error);
         }
     }
-    return (
+    return loader?<Loader/>:(
         <>
             <div className="container mt-3">
                 <div className="row">
@@ -80,6 +86,7 @@ const Home = () => {
                                 </>
                                 :
                                 <>
+                                
                                     <h1 className="col-md-12 text-center" style={{ fontWeight: "bolder", color: "blueviolet" }}>Upload File</h1>
                                     <form encType="multipart/form-data" className="col-md-10">
                                         <div className="inputHolder col-md-12 text-center">

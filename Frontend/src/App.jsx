@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar.js";
-import Home from "./components/Home/Home.js";
-import Receive from "./components/Receive/Receive.js";
-import Alert from "./components/Alert/Alert.js";
-import FileContext from "./context/FileContext.js";
+import Navbar from "./components/Navbar/Navbar.jsx";
+import Home from "./components/Home/Home.jsx";
+import Receive from "./components/Receive/Receive.jsx";
+import Alert from "./components/Alert/Alert.jsx";
+import FileContext from "./context/FileContext.jsx";
 import "./App.scss";
 
 function App() {
