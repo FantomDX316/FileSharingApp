@@ -150,7 +150,7 @@ const Receive = () => {
                     </div>
                 </div>
             </div>
-            <ParticlesBg type="ball" bg={true} />
+            {/* <ParticlesBg type="ball" bg={true} /> */}
 
         </>
     );
