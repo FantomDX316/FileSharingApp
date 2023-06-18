@@ -5,6 +5,7 @@ import FileContext from "../../context/FileContext";
 import { saveAs } from "file-saver";
 import "./Receive.scss";
 import ParticlesBg from "particles-bg";
+import Loader from "../Loader/Loader";
 
 const Receive = () => {
 
@@ -23,6 +24,9 @@ const Receive = () => {
         setOtp(e.target.value);
     }
 
+    //setting loader state
+    const [loader,setLoader] = useState(false);
+
     //otpVerify state to check whether the otp was verified or not and this changes the state accordingly
     const [otpVerify, setOtpVerify] = useState(false);
 
@@ -30,11 +34,14 @@ const Receive = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
 
+        setLoader(true);
+
         //setting otp inside an object
         const OTP = { otp };
 
         //requesting the server to verify the otp
         try {
+
             // const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_DEV_URL}${process.env.REACT_APP_PORT}/api/verifyOtp`, OTP, { headers: { "Content-Type": "application/json" } });
             const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_BASE_URL}/api/verifyOtp`, OTP, { headers: { "Content-Type": "application/json" } });
 
@@ -44,6 +51,7 @@ const Receive = () => {
             // console.log(data);
 
             if (data.success) {
+                setLoader(false);
                 setAlert("success", "OTP verified Successfully");
                 setId(data.id);
                 setOtpVerify(true);
@@ -55,6 +63,7 @@ const Receive = () => {
         } catch (error) {
             const data = error.response.data;
             if (!data.success) {
+                setLoader(false);
                 setAlert("danger", "Invalid OTP entered");
                 navigate("/");
 
@@ -64,10 +73,12 @@ const Receive = () => {
 
     //downloadHandler to allow user to download the file
     const downloadHandler = async (e) => {
+        setLoader(true)
         e.preventDefault();
         try {
             // const file = await axios.get(`${process.env.REACT_APP_BACKEND_API_DEV_URL}${process.env.REACT_APP_PORT}/api/downloadFile/${id}`, { responseType: 'blob' });
             const file = await axios.get(`${process.env.REACT_APP_BACKEND_API_BASE_URL}/api/downloadFile/${id}`, { responseType: 'blob' });
+            setLoader(false);
             const { data } = file;
             console.log(data);
             const fileName = Date.now();
@@ -100,6 +111,7 @@ const Receive = () => {
 
 
         } catch (error) {
+            setLoader(false);
             console.log(error);
         }
     }
@@ -108,7 +120,7 @@ const Receive = () => {
     const [id, setId] = useState("");
 
 
-    return (
+    return loader?<Loader/>:(
         <>
             <div className="container mt-3">
                 <div className="row">
