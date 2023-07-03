@@ -12,3 +12,5 @@
 ### * Next Move to the Frontend Directory and use the command shown below -
 ### ```npm start```
 ### * Above steps will let you run the app on local server
+
+### App is still being developed... Please share your opinion on making this app better
