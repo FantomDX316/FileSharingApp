@@ -13,4 +13,4 @@
 ### ```npm start```
 ### * Above steps will let you run the app on local server
 
-### App is still being developed... Please share your opinion on making this app better
+### App is still being developed..... Please share your opinion on making this app better
